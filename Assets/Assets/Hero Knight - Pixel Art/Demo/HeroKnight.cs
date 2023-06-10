@@ -26,16 +26,29 @@ public class HeroKnight : MonoBehaviour {
     private float               m_rollDuration = 8.0f / 14.0f;
     private float               m_rollCurrentTime;
 
+    public float facingDir { get { return m_facingDirection; } }
+
     public Transform Attackpoint;
     public float attackrange = 0.5f;
     public LayerMask enemyLayers;
     public int attackDmg = 10;
 
     public float attackrate = 2f;
-    float nextattacktime = 0f;
+
+    private float horizontal;
+    private bool isFacingRight = true;
+
+    public GameObject Uishow;
+
+    public GameObject ability1;
+    public GameObject ability2;
+    public GameObject ability3;
+
+    public SpriteRenderer render;
     // Use this for initialization
     void Start ()
     {
+        render = GetComponent<SpriteRenderer>();
         m_animator = GetComponent<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
         m_groundSensor = transform.Find("GroundSensor").GetComponent<Sensor_HeroKnight>();
@@ -43,6 +56,7 @@ public class HeroKnight : MonoBehaviour {
         m_wallSensorR2 = transform.Find("WallSensor_R2").GetComponent<Sensor_HeroKnight>();
         m_wallSensorL1 = transform.Find("WallSensor_L1").GetComponent<Sensor_HeroKnight>();
         m_wallSensorL2 = transform.Find("WallSensor_L2").GetComponent<Sensor_HeroKnight>();
+        Uishow.SetActive(false);
     }
 
     // Update is called once per frame
@@ -81,12 +95,14 @@ public class HeroKnight : MonoBehaviour {
         {
             GetComponent<SpriteRenderer>().flipX = false;
             m_facingDirection = 1;
+            Attackpoint.transform.localPosition = new Vector3(1, 1, 1);
         }
-            
+
         else if (inputX < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
             m_facingDirection = -1;
+            Attackpoint.transform.localPosition = new Vector3(-1, 1, 1);
         }
 
         // Move
@@ -113,7 +129,17 @@ public class HeroKnight : MonoBehaviour {
             m_animator.SetTrigger("Hurt");
 
         //Attack
-        else if(Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
+        //if(Time.time >= nextattacktime)
+        //{
+        //    if (Input.GetMouseButton(0) && m_timeSinceAttack > 0.25f && !m_rolling)
+        //    {
+        //        Attack();
+
+        //        nextattacktime = Time.time + 1f / attackrate;
+        //    }
+        //}
+
+        if (Input.GetMouseButton(0) && m_timeSinceAttack > 0.25f && !m_rolling)
         {
             Attack();
         }
@@ -162,7 +188,7 @@ public class HeroKnight : MonoBehaviour {
             m_delayToIdle -= Time.deltaTime;
                 if(m_delayToIdle < 0)
                     m_animator.SetInteger("AnimState", 0);
-        }
+        }  
     }
 
     // Animation Events
@@ -217,5 +243,42 @@ public class HeroKnight : MonoBehaviour {
         if (Attackpoint == null)
             return;
         Gizmos.DrawWireSphere(Attackpoint.position, attackrange);
+    }
+
+    private void Flip()
+    {
+        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Item")
+        {
+            Uishow.SetActive(true);
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Item")
+        {
+            Uishow.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                GameObject.FindGameObjectWithTag("Item").SetActive(false);
+                ability1.SetActive(true);
+            }
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Item")
+        {
+            Uishow.SetActive(false);
+        }
     }
 }

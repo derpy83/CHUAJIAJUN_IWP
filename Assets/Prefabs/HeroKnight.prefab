@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 802627423638203265}
   - component: {fileID: 8014049591797960765}
   - component: {fileID: 4968120333039803176}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WallSensor_R2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4903820841245607905}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 5611217481479058085}
   - component: {fileID: 8295041743763726267}
   - component: {fileID: 804547682498632266}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WallSensor_L2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 6757427479598111189}
   - component: {fileID: 6325322135735808181}
   - component: {fileID: 2469296873331488202}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WallSensor_R1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 7340501758126189205}
   - component: {fileID: 3125706810362893338}
   - component: {fileID: 9174082253557699843}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WallSensor_L1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,11 +285,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1584434053252957729}
   - component: {fileID: 2070991130800773600}
+  - component: {fileID: 4385624935403771407}
+  - component: {fileID: 4684985988918778302}
   - component: {fileID: 5036688410263006929}
   - component: {fileID: 5314400263642198473}
   - component: {fileID: 2099928662561370947}
   - component: {fileID: 2285960856890312544}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HeroKnight
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -341,6 +343,45 @@ MonoBehaviour:
     m_Bits: 128
   attackDmg: 10
   attackrate: 2
+  Uishow: {fileID: 0}
+  ability1: {fileID: 0}
+  ability2: {fileID: 0}
+  ability3: {fileID: 0}
+--- !u!114 &4385624935403771407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3962476556238441078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 285989f309edd8e4e8e2eff59dee1cdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 5036688410263006929}
+  Healthbar: {fileID: 0}
+  MaxHP: 0
+  ifDuration: 0
+  NumOfFlashes: 0
+--- !u!114 &4684985988918778302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3962476556238441078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a639bb6e04328644877bc2515abfee5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ability_1: {fileID: 0}
+  Ability_2: {fileID: 0}
+  Ability_3: {fileID: 0}
+  A1_Bullet: {fileID: 0}
+  A2_Bullet: {fileID: 0}
+  A3_Bullet: {fileID: 0}
 --- !u!95 &5036688410263006929
 Animator:
   serializedVersion: 5
@@ -471,7 +512,7 @@ GameObject:
   - component: {fileID: 5260330909256298430}
   - component: {fileID: 7657104105899307577}
   - component: {fileID: 8952209153796432529}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GroundSensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
