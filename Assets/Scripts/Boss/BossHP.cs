@@ -7,7 +7,7 @@ public class BossHP : MonoBehaviour
     public Animator animator;
     public Slider Healthbar;
     public int MaxHP;
-    public float deathDelay = 10f;
+    public float deathDelay = 2.5f;
 
     public bool isInvuknerable = false;
 
@@ -31,7 +31,7 @@ public class BossHP : MonoBehaviour
 
         if(Healthbar.value <= 100)
         {
-            GetComponent<Animator>().SetBool("IsEnrage", true);
+            GetComponent<Animator>().SetBool("IsEnraged", true);
         }
 
         if(Healthbar.value <= 0)

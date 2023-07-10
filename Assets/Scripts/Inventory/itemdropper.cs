@@ -5,6 +5,7 @@ using UnityEngine;
 public class itemdropper : MonoBehaviour
 {
     public GameObject itemdrop;
+    public Transform dropperPos;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,6 @@ public class itemdropper : MonoBehaviour
     }
     public void DropItem()
     {
-        Instantiate(itemdrop, transform.position + new Vector3(1.5f, 1, 0), Quaternion.identity);
+        Instantiate(itemdrop, dropperPos.position + new Vector3(1.5f, 1, 0), Quaternion.identity);
     }
 }

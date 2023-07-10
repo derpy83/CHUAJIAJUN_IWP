@@ -37,16 +37,17 @@ public class Boss : MonoBehaviour
 
     public void randomStatePicker()
     {
-        int randomstate = Random.Range(0, 2);
+        int randomstate = Random.Range(0, 4);
+        Debug.Log(randomstate);
         if (randomstate == 0)
         {
             //AtkDown Animation
             enemyAnim.SetTrigger("Walk");
         }
-        else if (randomstate == 1)
+        else if (randomstate == 2)
         {
             //SpellCasting Animation
-            enemyAnim.SetTrigger("Casting");
+            enemyAnim.SetTrigger("IsCasting");
         }
     }
 }

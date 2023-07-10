@@ -44,6 +44,16 @@ public class HeroKnight : MonoBehaviour {
     public GameObject ability2;
     public GameObject ability3;
 
+
+
+    public GameObject boss1;
+    public GameObject boss2;
+    public GameObject boss3;
+
+    public GameObject Boss1HP;
+    public GameObject Boss2HP;
+    public GameObject Boss3HP;
+
     public SpriteRenderer render;
     // Use this for initialization
     void Start ()
@@ -261,6 +271,11 @@ public class HeroKnight : MonoBehaviour {
         {
             Uishow.SetActive(true);
         }
+        if (collision.gameObject.tag == "Boss1")
+        {
+            boss1.SetActive(true);
+            Boss1HP.SetActive(true);
+        }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -281,4 +296,5 @@ public class HeroKnight : MonoBehaviour {
             Uishow.SetActive(false);
         }
     }
+    
 }

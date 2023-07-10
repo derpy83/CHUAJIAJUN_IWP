@@ -8,6 +8,9 @@ TagManager:
   - ability1
   - ability2
   - ability3
+  - Boss1
+  - Boss2
+  - Boss3
   layers:
   - Default
   - TransparentFX
@@ -18,7 +21,7 @@ TagManager:
   - Item
   - Boss
   - Enemy
-  - 
+  - map
   - 
   - 
   - 
@@ -47,4 +50,10 @@ TagManager:
     locked: 0
   - name: Item
     uniqueID: 2559358587
+    locked: 0
+  - name: BG
+    uniqueID: 3338302119
+    locked: 0
+  - name: Player
+    uniqueID: 3657147135
     locked: 0
