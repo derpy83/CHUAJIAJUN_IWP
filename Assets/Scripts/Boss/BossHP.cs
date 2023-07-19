@@ -12,6 +12,9 @@ public class BossHP : MonoBehaviour
     public bool isInvuknerable = false;
 
     public static BossHP Instance;
+
+    public GameObject Ability1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +42,7 @@ public class BossHP : MonoBehaviour
             animator.SetTrigger("Dead");
             animator.SetBool("IsDead", true);
             Destroy(gameObject, this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length + deathDelay);
+            Ability1.SetActive(true);
         }
     }
     

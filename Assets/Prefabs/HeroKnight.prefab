@@ -275,6 +275,90 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f2a8bdc7f41b704693ad497097f30dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2640067321950945281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4893221859620414500}
+  - component: {fileID: 2521156168523853499}
+  - component: {fileID: 8860440888642158517}
+  m_Layer: 0
+  m_Name: Main Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4893221859620414500
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2640067321950945281}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.04, y: 1.58, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1584434053252957729}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &2521156168523853499
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2640067321950945281}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 1
+  orthographic size: 3.41
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 0
+  m_HDR: 1
+  m_AllowMSAA: 0
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 0
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!81 &8860440888642158517
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2640067321950945281}
+  m_Enabled: 1
 --- !u!1 &3962476556238441078
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,7 +374,7 @@ GameObject:
   - component: {fileID: 5036688410263006929}
   - component: {fileID: 5314400263642198473}
   - component: {fileID: 2099928662561370947}
-  - component: {fileID: 2285960856890312544}
+  - component: {fileID: 1140147082847618663}
   m_Layer: 3
   m_Name: HeroKnight
   m_TagString: Player
@@ -316,6 +400,7 @@ Transform:
   - {fileID: 7340501758126189205}
   - {fileID: 5611217481479058085}
   - {fileID: 4903820841245607905}
+  - {fileID: 4893221859620414500}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -347,6 +432,13 @@ MonoBehaviour:
   ability1: {fileID: 0}
   ability2: {fileID: 0}
   ability3: {fileID: 0}
+  boss1: {fileID: 0}
+  boss2: {fileID: 0}
+  boss3: {fileID: 0}
+  Boss1HP: {fileID: 0}
+  Boss2HP: {fileID: 0}
+  Boss3HP: {fileID: 0}
+  render: {fileID: 0}
 --- !u!114 &4385624935403771407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,8 +454,6 @@ MonoBehaviour:
   animator: {fileID: 5036688410263006929}
   Healthbar: {fileID: 0}
   MaxHP: 0
-  ifDuration: 0
-  NumOfFlashes: 0
 --- !u!114 &4684985988918778302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,6 +472,7 @@ MonoBehaviour:
   A1_Bullet: {fileID: 0}
   A2_Bullet: {fileID: 0}
   A3_Bullet: {fileID: 0}
+  point: {fileID: 0}
 --- !u!95 &5036688410263006929
 Animator:
   serializedVersion: 5
@@ -475,8 +566,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &2285960856890312544
-BoxCollider2D:
+--- !u!70 &1140147082847618663
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -488,19 +579,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.662}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 3.125, y: 1.71875}
-    newSize: {x: 2, y: 2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.73, y: 1.2}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.014125336, y: 0.7225982}
+  m_Size: {x: 0.7824869, y: 1.1580472}
+  m_Direction: 0
 --- !u!1 &6967877820869824485
 GameObject:
   m_ObjectHideFlags: 0

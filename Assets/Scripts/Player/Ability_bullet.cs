@@ -11,9 +11,10 @@ public class Ability_bullet : MonoBehaviour
     public Transform Attackpoint;
     public float attackrange = 0.5f;
     public LayerMask enemyLayers;
+    public LayerMask bossLayers;
     public int attackDmg = 5;
 
-
+    
     public void Shoot(Vector3 shootdir)
     {
         rb.velocity = shootdir * speed;
@@ -28,16 +29,26 @@ public class Ability_bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        AbilityAtk();
     }
 
     void AbilityAtk()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(Attackpoint.position, attackrange, enemyLayers);
 
-        foreach (Collider2D hero in hitEnemies)
+        foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("Player got hit");
+            Debug.Log("Hit");
+
+            enemy.GetComponent<enemyHP>().takeDmg(attackDmg);
+            Destroy(gameObject);
+        }
+        Collider2D[] hitboss = Physics2D.OverlapCircleAll(Attackpoint.position, attackrange, bossLayers);
+        foreach (Collider2D enemy in hitboss)
+        {
+            Debug.Log("Hit");
+
+            enemy.GetComponent<BossHP>().takeDmg(attackDmg);
             Destroy(gameObject);
         }
     }

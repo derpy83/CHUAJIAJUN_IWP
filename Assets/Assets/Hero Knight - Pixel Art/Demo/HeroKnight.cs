@@ -31,6 +31,7 @@ public class HeroKnight : MonoBehaviour {
     public Transform Attackpoint;
     public float attackrange = 0.5f;
     public LayerMask enemyLayers;
+    public LayerMask BossLayer;
     public int attackDmg = 10;
 
     public float attackrate = 2f;
@@ -66,7 +67,6 @@ public class HeroKnight : MonoBehaviour {
         m_wallSensorR2 = transform.Find("WallSensor_R2").GetComponent<Sensor_HeroKnight>();
         m_wallSensorL1 = transform.Find("WallSensor_L1").GetComponent<Sensor_HeroKnight>();
         m_wallSensorL2 = transform.Find("WallSensor_L2").GetComponent<Sensor_HeroKnight>();
-        Uishow.SetActive(false);
     }
 
     // Update is called once per frame
@@ -105,14 +105,14 @@ public class HeroKnight : MonoBehaviour {
         {
             GetComponent<SpriteRenderer>().flipX = false;
             m_facingDirection = 1;
-            Attackpoint.transform.localPosition = new Vector3(1, 1, 1);
+            Attackpoint.transform.localPosition = new Vector3(1, 0.65f, 1);
         }
 
         else if (inputX < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
             m_facingDirection = -1;
-            Attackpoint.transform.localPosition = new Vector3(-1, 1, 1);
+            Attackpoint.transform.localPosition = new Vector3(-1, 0.65f, 1);
         }
 
         // Move
@@ -245,6 +245,13 @@ public class HeroKnight : MonoBehaviour {
         {
             Debug.Log("Hit");
 
+            enemy.GetComponent<enemyHP>().takeDmg(attackDmg);
+        }
+        Collider2D[] hitboss = Physics2D.OverlapCircleAll(Attackpoint.position, attackrange, BossLayer);
+        foreach (Collider2D enemy in hitboss)
+        {
+            Debug.Log("Hit");
+
             enemy.GetComponent<BossHP>().takeDmg(attackDmg);
         }
     }
@@ -267,34 +274,19 @@ public class HeroKnight : MonoBehaviour {
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Item")
-        {
-            Uishow.SetActive(true);
-        }
+       
         if (collision.gameObject.tag == "Boss1")
         {
             boss1.SetActive(true);
             Boss1HP.SetActive(true);
         }
-    }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Item")
+        if (collision.gameObject.tag == "Boss2")
         {
-            Uishow.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                GameObject.FindGameObjectWithTag("Item").SetActive(false);
-                ability1.SetActive(true);
-            }
+            boss2.SetActive(true);
+            Boss2HP.SetActive(true);
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "Item")
-        {
-            Uishow.SetActive(false);
-        }
-    }
+    
+    
     
 }

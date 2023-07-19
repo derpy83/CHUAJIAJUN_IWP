@@ -25,4 +25,6 @@ public class itemdropper : MonoBehaviour
     {
         Instantiate(itemdrop, dropperPos.position + new Vector3(1.5f, 1, 0), Quaternion.identity);
     }
+
+   
 }

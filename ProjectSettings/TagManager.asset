@@ -11,6 +11,10 @@ TagManager:
   - Boss1
   - Boss2
   - Boss3
+  - Enemy1
+  - Enemy2
+  - Enemy3
+  - Enemy4
   layers:
   - Default
   - TransparentFX
@@ -22,8 +26,8 @@ TagManager:
   - Boss
   - Enemy
   - map
-  - 
-  - 
+  - EnemyHitBox
+  - Ground
   - 
   - 
   - 
