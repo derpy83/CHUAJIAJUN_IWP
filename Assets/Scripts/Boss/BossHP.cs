@@ -15,6 +15,9 @@ public class BossHP : MonoBehaviour
 
     public GameObject Ability1;
 
+    public GameObject collider1;
+    public GameObject collider2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,20 +33,22 @@ public class BossHP : MonoBehaviour
             return;
 
         Healthbar.value -= Damage;
-        
 
-        if(Healthbar.value <= 100)
+        if (Healthbar.value <= 100)
         {
             GetComponent<Animator>().SetBool("IsEnraged", true);
         }
 
-        if(Healthbar.value <= 0)
+        if (Healthbar.value <= 0)
         {
             animator.SetTrigger("Dead");
             animator.SetBool("IsDead", true);
             Destroy(gameObject, this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length + deathDelay);
             Ability1.SetActive(true);
+            collider1.SetActive(false);
+            collider2.SetActive(false);
         }
+        
     }
     
     
